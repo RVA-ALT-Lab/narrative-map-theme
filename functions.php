@@ -171,5 +171,5 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
  * TEMP HOUSING OF ACF FOR TESTING W/O IMPORT HASSLE
  */
-require get_template_directory() . '/inc/acf-functions.php';
+//require get_template_directory() . '/inc/acf-functions.php';
 
