@@ -167,3 +167,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+/**
+ * TEMP HOUSING OF ACF FOR TESTING W/O IMPORT HASSLE
+ */
+require get_template_directory() . '/inc/acf-functions.php';
+
