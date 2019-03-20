@@ -27,15 +27,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo get_site_url(). '/points';?>" id="openPoints">
+                            <a href="<?php echo get_site_url(). '/locations';?>" id="openPoints">
                                 <i class="fa fa-2x fa-map-signs"></i>
-                                <p>Points</p>
+                                <p>Locations</p>
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo get_site_url(). '/add-point';?>">
-                                <i class="fa fa-2x fa-plus"></i>
-                                <p>Add</p>
+                            <a href="<?php echo get_site_url(). '/people';?>">
+                                <i class="fa fa-2x fa-user"></i>
+                                <p>People</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo get_site_url(). '/events';?>">
+                                <i class="fa fa-2x calendar-event"></i>
+                                <p>Events</p>
                             </a>
                         </li>
                         <hr>

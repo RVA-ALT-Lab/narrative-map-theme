@@ -11,7 +11,7 @@ Template Name: Front Page
                     $featured_img_url = get_the_post_thumbnail_url();
                     $caption = get_post(get_post_thumbnail_id())->post_excerpt;
                     if(!$featured_img_url){
-                        $featured_img_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/VCU_East_on_Broad_by_Jeff_Auth.jpg/1200px-VCU_East_on_Broad_by_Jeff_Auth.jpg';
+                        $featured_img_url = 'https://www.encyclopediavirginia.org/filestore/8/8/2/0_8fc9623885e5d52/8820pre_664fcf550b47c58.jpg';
                     }
                 ?>
                 <div id="front-page" style="background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(<?php echo $featured_img_url; ?>); background-size: cover;">
