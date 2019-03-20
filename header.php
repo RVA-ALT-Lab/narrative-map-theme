@@ -21,6 +21,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="<?php echo get_site_url(). '/locations';?>" id="openPoints">
+                                <i class="fa fa-2x fa-map-signs"></i>
+                                <p>Narrative</p>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?php echo get_site_url(). '/map';?>">
                             <i class="fa fa-2x fa-map"></i>
                             <p>Map</p>
@@ -28,7 +34,7 @@
                         </li>
                         <li>
                             <a href="<?php echo get_site_url(). '/locations';?>" id="openPoints">
-                                <i class="fa fa-2x fa-map-signs"></i>
+                                <i class="fa fa-2x fa-map-pin"></i>
                                 <p>Locations</p>
                             </a>
                         </li>
@@ -40,7 +46,7 @@
                         </li>
                         <li>
                             <a href="<?php echo get_site_url(). '/events';?>">
-                                <i class="fa fa-2x calendar-event"></i>
+                                <i class="fa fa-2x fa-calendar"></i>
                                 <p>Events</p>
                             </a>
                         </li>
@@ -67,7 +73,7 @@
                                 <p><?php echo $category->name; ?></p>
                             </a></li>
                             <?php $increment++; ?>
-                            <?php endforeach;?>
+                            <?php endforeach;?> -->
                     </ul>
                 </nav>
             </div>
