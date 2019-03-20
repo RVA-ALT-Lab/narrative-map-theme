@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Map Page
+Template Name: People Page
 **/
 
 get_header(); ?>
@@ -10,11 +10,10 @@ get_header(); ?>
             }
 
             ?>
-            <div class="map">
-
-                <div id="map">
-
-                </div>
+            <div class="container">
+              <div class="row">
+                <h1><? the_title(); ?></h1>
+              </div>
             </div>
 
         </div>

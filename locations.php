@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Map Page
+Template Name: Locations Page
 **/
 
 get_header(); ?>
