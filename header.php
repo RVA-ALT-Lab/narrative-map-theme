@@ -73,7 +73,7 @@
                                 <p><?php echo $category->name; ?></p>
                             </a></li>
                             <?php $increment++; ?>
-                            <?php endforeach;?> -->
+                            <?php endforeach;?>
                     </ul>
                 </nav>
             </div>
