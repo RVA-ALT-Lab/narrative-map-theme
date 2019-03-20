@@ -3,25 +3,6 @@
     "title": "Location",
     "fields": [
         {
-            "key": "field_5c73fd975d37a",
-            "label": "Title",
-            "name": "title",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5c73fda15d37b",
             "label": "Lat Long",
             "name": "lat_long",
@@ -114,5 +95,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1551190925
+    "modified": 1553083203
 }
