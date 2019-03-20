@@ -1,58 +1,67 @@
-<?php
-/**
- * The header for our theme
- *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Narrative_Map_Theme
- */
-
-?>
-<!doctype html>
-<html <?php language_attributes(); ?>>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-
-	<?php wp_head(); ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php the_title() ?> | <?php bloginfo('name'); ?></title>
+    <?php wp_head(); ?>
 </head>
-
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'narrative-map-theme' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$narrative_map_theme_description = get_bloginfo( 'description', 'display' );
-			if ( $narrative_map_theme_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $narrative_map_theme_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+<div class="container-fluid">
+        <div class="row site-wrapper">
+            <div class="side-nav">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="<?php echo get_home_url();?>">
+                            <i class="fa fa-2x fa-home"></i>
+                            <p>Home</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo get_site_url(). '/map';?>">
+                            <i class="fa fa-2x fa-map"></i>
+                            <p>Map</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo get_site_url(). '/points';?>" id="openPoints">
+                                <i class="fa fa-2x fa-map-signs"></i>
+                                <p>Points</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo get_site_url(). '/add-point';?>">
+                                <i class="fa fa-2x fa-plus"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <hr>
+                        <?php $color_array = array(
+                            '#E57200',
+                            '#FFCE00',
+                            '#00B3BE',
+                            '#8568BE',
+                            '#275E37'
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'narrative-map-theme' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+                        );
+                        $increment = 0;
+                        ?>
+                        <?php $categories = get_terms(array('taxonomy' => 'map-point-category', 'hide_empty' => false)); ?>
+                            <?php foreach($categories as $category): ?>
+                            <li class="category-marker" data-category="<?php echo $category->term_id; ?>" data-color="<?php echo isset($color_array[$increment]) ? $color_array[$increment] : 'purple'; ?>" >
+                                <?php
+                                    $site_url = get_option('siteurl');
+                                    $cat_link = $site_url . '/map-point-category/' . $category->slug;
+                                ?>
+                                <a href="<?php echo $cat_link; ?>">
+                                <i class="fa fa-2x fa-map-marker" style="color: <?php echo isset($color_array[$increment]) ? $color_array[$increment] : 'purple'; ?>;"></i>
+                                <p><?php echo $category->name; ?></p>
+                            </a></li>
+                            <?php $increment++; ?>
+                            <?php endforeach;?>
+                    </ul>
+                </nav>
+            </div>
