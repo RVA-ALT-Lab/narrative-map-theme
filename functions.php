@@ -120,7 +120,17 @@ add_action( 'widgets_init', 'narrative_map_theme_widgets_init' );
  * Enqueue scripts and styles.
  */
 function narrative_map_theme_scripts() {
-	wp_enqueue_style( 'narrative-map-theme-style', get_stylesheet_uri() );
+
+  wp_register_style('leaflet_css', 'https://unpkg.com/leaflet@1.2.0/dist/leaflet.css');
+  wp_enqueue_style('leaflet_css');
+
+  wp_register_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css');
+  wp_enqueue_style('bootstrap');
+
+  wp_register_style('font_awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+  wp_enqueue_style('font_awesome');
+
+  wp_enqueue_style( 'narrative-map-theme-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'narrative-map-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
