@@ -11,12 +11,13 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		FOO - <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		 <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
 	<?php narrative_map_theme_post_thumbnail(); ?>
 
 	<div class="entry-content">
+		<?php echo acf_fetch_pastor();?>
 		<?php
 		the_content();
 
