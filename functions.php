@@ -259,5 +259,72 @@ function acf_fetch_pastor(){
 }
 
 
+function acf_fetch_clerk(){
+  global $post;
+  $html = '';
+  $clerk = get_field('clerk');
+
+    if( $clerk) {      
+      $html =  '<div class="clerk">' . $clerk . '</div>';  
+     return $html;    
+    }
+
+}
+
+
+function acf_fetch_city(){
+  global $post;
+  $html = '';
+  $city = get_field('city');
+
+    if( $city) {      
+      $html = $city;  
+     return $html;    
+    }
+}
+
+
+function acf_fetch_count(){
+  global $post;
+  $html = '';
+  $count = get_field('count');
+
+    if( $count) {      
+      $html = $count;  
+     return $html;    
+    }
+
+}
+
+
+function acf_fetch_state(){
+  global $post;
+  $html = '';
+  $state = get_field('state');
+    if( $state) {      
+      $html = $state;  
+     return $html;    
+    }
+}
+
+function acf_generic_field($field, $label){
+	global $post;
+  	$html = '';
+  	$info = get_field($field);
+  	 if( $info ) {      
+     return '<div class="generic-data">' . $label . ': ' . $info . '</div>';    
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

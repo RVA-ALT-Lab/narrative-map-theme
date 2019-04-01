@@ -270,6 +270,25 @@
             "min": "",
             "max": "",
             "return_format": "object"
+        },
+        {
+            "key": "field_5ca23e0a255d8",
+            "label": "Data Source",
+            "name": "data_source",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -289,5 +308,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1554134928
+    "modified": 1554136596
 }

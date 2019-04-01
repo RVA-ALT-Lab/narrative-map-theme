@@ -18,6 +18,12 @@
 
 	<div class="entry-content">
 		<?php echo acf_fetch_pastor();?>
+		<?php 
+		echo  acf_generic_field('clerk', 'clerk');
+		echo  acf_generic_field('city', 'city');
+		echo  acf_generic_field('county', 'county');
+
+		;?>
 		<?php
 		the_content();
 
