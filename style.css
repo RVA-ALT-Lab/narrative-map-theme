@@ -302,3 +302,11 @@ li a .fa-map-marker {
   background: #fff;
   height: 100vh;
 }
+
+/*single location*/
+.single-location .entry-content{
+  margin-left: 100px;
+}
+.pastor {
+  font-size: 1.3em;
+}
