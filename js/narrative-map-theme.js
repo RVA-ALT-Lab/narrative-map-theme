@@ -32,7 +32,11 @@ var MapUtilityClass = function ($) {
     fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
         .then(data => data.json())
         .then(json => {
-          L.geoJSON(json).addTo(map)
+          L.geoJSON(json)
+          .bindPopup(function(layer) {
+            return layer.feature.properties.description
+          })
+          .addTo(map)
         })
   }
 
