@@ -46,7 +46,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 body, html {
   height: 100%;
-  background: #455a64;
+  /* background: #455a64; */
 }
 .container-fluid {
   padding: 0;
