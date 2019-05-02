@@ -241,7 +241,7 @@ function make_member_csv($data){
 			
 }
 
-//add_shortcode( 'get-churches', 'import_members_csv' );
+add_shortcode( 'get-churches', 'import_members_csv' );
 
 
 //ACF DISPLAY 
