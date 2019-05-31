@@ -21,7 +21,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo get_site_url(). '/locations';?>" id="openPoints">
+                            <a href="<?php echo get_site_url(). '/narrative';?>" id="openPoints">
                                 <i class="fa fa-2x fa-map-signs"></i>
                                 <p>Narrative</p>
                             </a>

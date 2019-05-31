@@ -60,7 +60,7 @@ body, html {
 
 
 .side-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -309,4 +309,23 @@ li a .fa-map-marker {
 }
 .pastor {
   font-size: 1.3em;
+}
+
+
+/* Narrative Scrolly Section */
+
+#narrative-section .map {
+  height: 500px;
+  width: 100%;
+  position: sticky;
+
+}
+
+#narrative-section #map {
+  width: 100%;
+  height: 100%;
+}
+
+#narrative-section .step {
+  min-height: 500px;
 }

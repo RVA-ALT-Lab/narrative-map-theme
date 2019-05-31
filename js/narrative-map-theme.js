@@ -13,7 +13,19 @@ var MapUtilityClass = function ($) {
         .then(data => data.json())
         .then(json => resolve(json))
   }
+  this.countyConventions = [
+    'Accomack',
+    'Prince Edward',
+    'Nottoway',
+    'Bedford'
+  ]
 
+  this.mahoneCanvass = [
+    'Spotsylvania',
+    'Henrico',
+    'Chesterfield',
+    'Prince Edward'
+  ]
 
 
   this.initMap = function ( ) {
@@ -29,10 +41,24 @@ var MapUtilityClass = function ($) {
   }
 
   this.createCountyBoundries = function (map) {
+
     fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
         .then(data => data.json())
         .then(json => {
-          L.geoJSON(json)
+
+          function styleCounties(feature) {
+            return {
+              fillColor: feature.properties.description.countyConvention ? 'green' : null
+            }
+          }
+
+          const mappedCounties = json.features.map(feature => {
+            feature.properties.description.countyConvention = self.countyConventions.includes(feature.properties.description.name) ? true : false
+            return feature
+          })
+          json.features = mappedCounties
+
+          L.geoJSON(json, {style: styleCounties})
           .bindPopup(function(layer) {
             return layer.feature.properties.description
           })
