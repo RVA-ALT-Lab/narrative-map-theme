@@ -316,9 +316,18 @@ li a .fa-map-marker {
 /* Narrative Scrolly Section */
 
 .narrative-title-section {
-  padding: 25%;
+  padding: 15%;
   text-align: center;
   margin-bottom: 2em;
+  background: url(https://i.etsystatic.com/11512024/r/il/0ccd88/1345461763/il_794xN.1345461763_h8sk.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.narrative-title-section .title-container {
+  padding: 10%;
+  /* border: 1px solid rgba(105,105,105,1); */
+  background: #fff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
 }
 
 #narrative-section .map {

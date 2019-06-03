@@ -1,9 +1,10 @@
 <?php get_header(); ?>
   <div class="content-container container-fluid" id="narrative-section">
     <div class="row">
-      <div class="narrative-title-section">
-        <div class="col-lg-12">
+      <div class="narrative-title-section" style="background: url(<?php echo get_stylesheet_directory_uri().'/images/virginia-map-1883.jpg'; ?>)">
+        <div class="col-lg-12 title-container">
           <h1>Mapping Black Religion and Politics in Post-Emancipation Virginia</h1>
+          <hr>
           <h2>
           A Digital History Project by <br>
           Nicole Myers Tuner, PhD
