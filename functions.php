@@ -194,7 +194,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 
 
-//IMPORT CSV STUFF 
+//IMPORT CSV STUFF
 
 function import_members_csv(){
          $file = plugin_dir_path(__FILE__) .'black_churches.csv';
@@ -207,7 +207,7 @@ function import_members_csv(){
 			    fclose($handle);
 			}
 			make_member_csv($arrResult);
-	}	
+	}
 
 function make_member_csv($data){
 			foreach ($data as $key => $church) {
@@ -216,14 +216,14 @@ function make_member_csv($data){
 				  'post_status'   => 'publish',
 				  'post_type' => 'location',
 				);
-			 
+
 			// Insert the post into the database
 			$new_church = wp_insert_post( $new_church );
 			var_dump($new_church);
 			if ($new_church) {
 			   // insert post meta
-				$values = array( 
-					'pastor' => $church[8],					
+				$values = array(
+					'pastor' => $church[8],
 					'clerk' => $church[9],
 					'year' => $church[7],
 					'association' => $church[6],
@@ -238,22 +238,22 @@ function make_member_csv($data){
 				   }
 				}
 			}
-			
+
 }
 
 add_shortcode( 'get-churches', 'import_members_csv' );
 
 
-//ACF DISPLAY 
+//ACF DISPLAY
 //Location
 
 function acf_fetch_pastor(){
   global $post;
   $html = '';
   $pastor = get_field('pastor');
-    if( $pastor) {      
-      $html = '<div class="pastor">' . $pastor . '</div>';  
-     return $html;    
+    if( $pastor) {
+      $html = '<div class="pastor">' . $pastor . '</div>';
+     return $html;
     }
 
 }
@@ -264,9 +264,9 @@ function acf_fetch_clerk(){
   $html = '';
   $clerk = get_field('clerk');
 
-    if( $clerk) {      
-      $html =  '<div class="clerk">' . $clerk . '</div>';  
-     return $html;    
+    if( $clerk) {
+      $html =  '<div class="clerk">' . $clerk . '</div>';
+     return $html;
     }
 
 }
@@ -277,9 +277,9 @@ function acf_fetch_city(){
   $html = '';
   $city = get_field('city');
 
-    if( $city) {      
-      $html = $city;  
-     return $html;    
+    if( $city) {
+      $html = $city;
+     return $html;
     }
 }
 
@@ -289,9 +289,9 @@ function acf_fetch_count(){
   $html = '';
   $count = get_field('count');
 
-    if( $count) {      
-      $html = $count;  
-     return $html;    
+    if( $count) {
+      $html = $count;
+     return $html;
     }
 
 }
@@ -301,9 +301,9 @@ function acf_fetch_state(){
   global $post;
   $html = '';
   $state = get_field('state');
-    if( $state) {      
-      $html = $state;  
-     return $html;    
+    if( $state) {
+      $html = $state;
+     return $html;
     }
 }
 
@@ -311,10 +311,21 @@ function acf_generic_field($field, $label){
 	global $post;
   	$html = '';
   	$info = get_field($field);
-  	 if( $info ) {      
-     return '<div class="generic-data">' . $label . ': ' . $info . '</div>';    
+  	 if( $info ) {
+     return '<div class="generic-data">' . $label . ': ' . $info . '</div>';
     }
 }
+
+function acf_fetch_map_json(){
+  global $post;
+  $json = get_field('map_json');
+  if( $json) {
+    return $json;
+  } else {
+    return '{"step":"no json provided"}';
+  }
+}
+
 
 
 
