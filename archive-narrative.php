@@ -68,7 +68,7 @@ scroller
 
       let style = function (feature) {
         return {
-          "fillColor": feature.properties.description[mapInstructions.style.fillColor.source].toLowerCase() === mapInstructions.style.fillColor.target ? mapInstructions.style.fillColor.style : null
+          "fillColor": mapInstructions.style.fillColor.targets.includes(feature.properties.description[mapInstructions.style.fillColor.source].toLowerCase()) ? mapInstructions.style.fillColor.style : null
         }
       }
       countyLayer.resetStyle(countyLayer)
