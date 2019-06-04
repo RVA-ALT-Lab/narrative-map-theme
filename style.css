@@ -42,6 +42,12 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	## Galleries
 --------------------------------------------------------------*/
 
+/* Override Rampages Privacy Policy */
+
+#private {
+  display: none !important;
+}
+
 /* Start of Custom Map Code */
 
 body, html {
