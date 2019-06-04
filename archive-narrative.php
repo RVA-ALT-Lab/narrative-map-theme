@@ -7,7 +7,7 @@
           <hr>
           <h2>
           A Digital History Project by <br>
-          Nicole Myers Tuner, PhD
+          Nicole Myers Turner, PhD
           </h2>
         </div>
       </div>
