@@ -57,7 +57,24 @@ scroller
     // progress: true
   })
   .onStepEnter((response)=>{
-    console.log(JSON.parse(response.element.dataset.json))
+    console.log(response.element.dataset.json)
+    const mapInstructions = JSON.parse(response.element.dataset.json)
+    console.log(mapInstructions)
+    if (mapInstructions['flyTo']) {
+      map.flyTo(mapInstructions['flyTo'].latlng, mapInstructions['flyTo'].zoom )
+    }
+
+    if (mapInstructions['style']) {
+
+      let style = function (feature) {
+        return {
+          "fillColor": feature.properties.description[mapInstructions.style.fillColor.source].toLowerCase() === mapInstructions.style.fillColor.target ? mapInstructions.style.fillColor.style : null
+        }
+      }
+      countyLayer.resetStyle(countyLayer)
+      countyLayer.setStyle(style)
+    }
+
     console.log(map)
   })
   .onStepExit((response)=>console.log('exiting'))

@@ -41,29 +41,28 @@ var MapUtilityClass = function ($) {
   }
 
   this.createCountyBoundries = function (map) {
-
-    fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
+    return new Promise((resolve, reject) => {
+      fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
         .then(data => data.json())
         .then(json => {
 
-          function styleCounties(feature) {
-            return {
-              fillColor: feature.properties.description.countyConvention ? 'green' : null
-            }
-          }
+          // function styleCounties(feature) {
+          //   return {
+          //     fillColor: feature.properties.description.countyConvention ? 'green' : null
+          //   }
+          // }
 
-          const mappedCounties = json.features.map(feature => {
-            feature.properties.description.countyConvention = self.countyConventions.includes(feature.properties.description.name) ? true : false
-            return feature
-          })
-          json.features = mappedCounties
+          // const mappedCounties = json.features.map(feature => {
+          //   feature.properties.description.countyConvention = self.countyConventions.includes(feature.properties.description.name) ? true : false
+          //   return feature
+          // })
+          // json.features = mappedCounties
 
-          L.geoJSON(json, {style: styleCounties})
-          .bindPopup(function(layer) {
-            return layer.feature.properties.description
-          })
+          const countyLayer = L.geoJSON(json)
           .addTo(map)
+          resolve(countyLayer)
         })
+    })
   }
 
 
@@ -72,5 +71,7 @@ var MapUtilityClass = function ($) {
 var MapTool = new MapUtilityClass(jQuery);
 
 const map = MapTool.initMap();
-
-MapTool.createCountyBoundries(map);
+var countyLayer
+MapTool.createCountyBoundries(map).then(counties => {
+  countyLayer = counties
+});
