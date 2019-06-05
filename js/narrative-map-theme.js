@@ -60,6 +60,14 @@ var MapUtilityClass = function ($) {
 
           const countyLayer = L.geoJSON(json)
           .addTo(map)
+          function defineBaseStyle (feature) {
+            return {
+              "fillColor": '#FFFFFF',
+              "fillOpacity": 0,
+              "color": '#FFFFFF'
+            }
+          }
+          countyLayer.setStyle(defineBaseStyle)
           resolve(countyLayer)
         })
     })

@@ -61,7 +61,7 @@ scroller
     const mapInstructions = JSON.parse(response.element.dataset.json)
     console.log(mapInstructions)
     if (mapInstructions['flyTo']) {
-      map.flyTo(mapInstructions['flyTo'].latlng, mapInstructions['flyTo'].zoom )
+      map.setView(mapInstructions['flyTo'].latlng, mapInstructions['flyTo'].zoom )
     }
 
     if (mapInstructions['style']) {
@@ -71,7 +71,16 @@ scroller
           "fillColor": mapInstructions.style.fillColor.targets.includes(feature.properties.description[mapInstructions.style.fillColor.source].toLowerCase()) ? mapInstructions.style.fillColor.style : null
         }
       }
-      countyLayer.resetStyle(countyLayer)
+      function defineBaseStyle (feature) {
+            return {
+              "fillColor": '#FFFFFF',
+              "fillOpacity": 0,
+              "color": '#FFFFFF',
+              "weight": 1,
+              //"dashArray": "4 1"
+            }
+          }
+      countyLayer.setStyle(defineBaseStyle)
       countyLayer.setStyle(style)
     }
 
