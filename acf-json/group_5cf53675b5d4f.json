@@ -3,10 +3,10 @@
     "title": "Narrative",
     "fields": [
         {
-            "key": "field_5cf5367fafcae",
-            "label": "Map JSON",
-            "name": "map_json",
-            "type": "textarea",
+            "key": "field_5cfa64e319b55",
+            "label": "Focus Latitude",
+            "name": "focus_latitude",
+            "type": "number",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,10 +16,54 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "Valid JSON string for map directions",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5cfa64f819b56",
+            "label": "Focus Longitude",
+            "name": "focus_longitude",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
+        },
+        {
+            "key": "field_5cfa650519b57",
+            "label": "Focus Zoom",
+            "name": "focus_zoom",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": ""
         },
         {
             "key": "field_5cf932f745212",
@@ -39,6 +83,25 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5cf933951c111",
+            "label": "Map Legend",
+            "name": "map_legend",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 1
         },
         {
             "key": "field_5cf9330f45213",
@@ -142,10 +205,10 @@
             ]
         },
         {
-            "key": "field_5cf933951c111",
-            "label": "Map Legend",
-            "name": "map_legend",
-            "type": "wysiwyg",
+            "key": "field_5cf5367fafcae",
+            "label": "Map JSON",
+            "name": "map_json",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -155,10 +218,10 @@
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 1,
-            "delay": 1
+            "placeholder": "Valid JSON string for map directions",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -178,5 +241,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1559835741
+    "modified": 1559913864
 }
