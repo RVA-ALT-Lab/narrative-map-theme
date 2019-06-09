@@ -66,6 +66,32 @@
             "step": ""
         },
         {
+            "key": "field_5cfa902745a44",
+            "label": "Focus Transition",
+            "name": "focus_transition",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "zoomTo": "Zoom To",
+                "panTo": "Pan To",
+                "flyTo": "Fly To"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_5cf932f745212",
             "label": "Map Title",
             "name": "map_title",
@@ -222,6 +248,25 @@
             "maxlength": "",
             "rows": "",
             "new_lines": ""
+        },
+        {
+            "key": "field_5cfa66261640b",
+            "label": "Highlighted Counties",
+            "name": "highlighted_counties",
+            "type": "textarea",
+            "instructions": "This should be a comma separated list of county names preferably in lower case: i.e. augusta,chesterfield, etc",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -241,5 +286,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1559913864
+    "modified": 1559924859
 }

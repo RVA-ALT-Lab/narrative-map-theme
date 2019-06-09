@@ -244,6 +244,24 @@ function make_member_csv($data){
 add_shortcode( 'get-churches', 'import_members_csv' );
 
 
+// if (function_exists('acf_add_options_page')) {
+ function add_options_menu () {
+    acf_add_options_page(
+      array(
+        'page_title' => 'Map Settings',
+        'menu_title' => 'Map Settings',
+        'menu_slug' => 'map-settings',
+        'redirect' => true,
+        'capability' => 'activate_plugins',
+        'icon_url' => 'dashicons-admin-site'
+      )
+    );
+  }
+
+  add_action('admin_menu', 'add_options_menu');
+// }
+
+
 //ACF DISPLAY
 //Location
 
@@ -323,6 +341,96 @@ function acf_fetch_map_json(){
     return $json;
   } else {
     return '{"step":"no json provided"}';
+  }
+}
+
+function acf_fetch_map_focus_latitude(){
+  global $post;
+  $json = get_field('focus_latitude');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_focus_longitude(){
+  global $post;
+  $json = get_field('focus_longitude');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_focus_zoom(){
+  global $post;
+  $json = get_field('focus_zoom');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_focus_transition(){
+  global $post;
+  $json = get_field('focus_transition');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_title(){
+  global $post;
+  $json = get_field('map_title');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_legend(){
+  global $post;
+  $json = get_field('map_legend');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_points(){
+  global $post;
+  $rows = get_field('points');
+  if ($rows) {
+    $points = array();
+    foreach($rows as $row) {
+      $point = array(
+        'latitude' => $row['point_latitude'],
+        'longitude' => $row['point_longitude'],
+        'title' => $row['point_title'],
+        'content' => $row['point_content']
+      );
+      array_push($points, $point);
+    }
+    return json_encode($points);
+  } else {
+    return '';
+  }
+}
+
+function acf_fetch_map_highlighted_counties(){
+  global $post;
+  $json = get_field('highlighted_counties');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
   }
 }
 

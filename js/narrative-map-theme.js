@@ -13,20 +13,6 @@ var MapUtilityClass = function ($) {
         .then(data => data.json())
         .then(json => resolve(json))
   }
-  this.countyConventions = [
-    'Accomack',
-    'Prince Edward',
-    'Nottoway',
-    'Bedford'
-  ]
-
-  this.mahoneCanvass = [
-    'Spotsylvania',
-    'Henrico',
-    'Chesterfield',
-    'Prince Edward'
-  ]
-
 
   this.initMap = function ( ) {
 
@@ -73,6 +59,71 @@ var MapUtilityClass = function ($) {
     })
   }
 
+  this.processNarrativeStepIntoInstructions = function (element) {
+    const mapInstructions = {
+      focus: {
+        latitude: null,
+        longitude: null,
+        zoom: null,
+        transition: null
+      },
+      map: {
+        title: null,
+        legend: null,
+        points: [],
+        highlightedCounties: []
+      }
+    }
+    mapInstructions.focus.latitude = parseFloat(element.dataset.focusLatitude)
+    mapInstructions.focus.longitude = parseFloat(element.dataset.focusLongitude)
+    mapInstructions.focus.zoom = parseInt(element.dataset.focusZoom)
+    mapInstructions.focus.transition = element.dataset.focusTransition
+
+
+    mapInstructions.map.title = element.dataset.mapTitle
+    mapInstructions.map.legend = element.dataset.mapLegend
+    mapInstructions.map.points = element.dataset.mapPoints ? JSON.parse(element.dataset.mapPoints) : []
+    mapInstructions.map.highlightedCounties = element.dataset.highlightedCounties
+
+    return mapInstructions
+  }
+
+  this.performFocusTransitions = function (map, instructions) {
+    const newFocus = [
+      [instructions.focus.latitude, instructions.focus.longitude],
+      instructions.focus.zoom || 8
+    ]
+    if (!instructions.focus.transition || instructions.focus.transition === 'zoomTo') {
+      map.setView(...newFocus)
+    } else if (instructions.focus.transition === 'panTo') {
+      map.panTo(...newFocus)
+    } else if (instructions.focus.transition === 'flyTo') {
+      map.flyTo(...newFocus)
+    }
+  }
+  this.activeMarkers = []
+
+  this.addMapPoints = (map, points) => {
+    points.forEach(point => {
+      const marker = L.marker([point.latitude, point.longitude], {
+        title: point.title
+      })
+      marker.bindPopup(point.content)
+      marker.addTo(map)
+      this.activeMarkers.push(marker)
+    })
+  }
+
+  this.removeMapPoints = () => {
+    this.activeMarkers.forEach(marker => {
+      marker.remove()
+    })
+    this.activeMarkers = []
+  }
+
+  this.stylePolygonBoundaries = () => {
+
+  }
 
 }
 

@@ -22,7 +22,22 @@
         while ( have_posts() ) :
           the_post();
         ?>
-          <div class="step" data-step="<?php echo $index; $index++ ?>" data-json='<?php echo acf_fetch_map_json(); ?>'>
+          <div class="step"
+          data-step="<?php echo $index; $index++ ?>"
+
+          data-json='<?php echo acf_fetch_map_json(); ?>'
+
+          data-focus-latitude='<?php echo acf_fetch_map_focus_latitude(); ?>'
+          data-focus-longitude='<?php echo acf_fetch_map_focus_longitude(); ?>'
+          data-focus-zoom='<?php echo acf_fetch_map_focus_zoom(); ?>'
+          data-focus-transition='<?php echo acf_fetch_map_focus_transition(); ?>'
+
+          data-map-title='<?php echo acf_fetch_map_title(); ?>'
+          data-map-legend='<?php echo acf_fetch_map_legend(); ?>'
+
+          data-map-points='<?php echo acf_fetch_map_points(); ?>'
+          data-highlighted-counties='<?php echo acf_fetch_map_highlighted_counties(); ?>'
+          >
             <h2><?php the_title(); ?></h2>
             <?php the_content(); ?>
           </div>
@@ -50,6 +65,8 @@
 <script src="https://unpkg.com/intersection-observer"></script>
 <script src="https://unpkg.com/scrollama"></script>
 <script>
+
+const colors = ['#F8C7A0', '#E3D7B1', '#DEA571', '#F9D39C' ]
 const scroller = scrollama()
 scroller
   .setup({
@@ -57,37 +74,15 @@ scroller
     // progress: true
   })
   .onStepEnter((response)=>{
-    console.log(response.element.dataset.json)
-    const mapInstructions = JSON.parse(response.element.dataset.json)
-    console.log(mapInstructions)
-    if (mapInstructions['flyTo']) {
-      map.setView(mapInstructions['flyTo'].latlng, mapInstructions['flyTo'].zoom )
-    }
-
-    if (mapInstructions['style']) {
-
-      let style = function (feature) {
-        return {
-          "fillColor": mapInstructions.style.fillColor.targets.includes(feature.properties.description[mapInstructions.style.fillColor.source].toLowerCase()) ? mapInstructions.style.fillColor.style : null
-        }
-      }
-      function defineBaseStyle (feature) {
-            return {
-              "fillColor": '#FFFFFF',
-              "fillOpacity": 0,
-              "color": '#FFFFFF',
-              "weight": 1,
-              //"dashArray": "4 1"
-            }
-          }
-      countyLayer.setStyle(defineBaseStyle)
-      countyLayer.setStyle(style)
-    }
+    const instructions = MapTool.processNarrativeStepIntoInstructions(response.element)
+    MapTool.performFocusTransitions(map, instructions)
+    MapTool.addMapPoints(map, instructions.map.points)
 
     console.log(map)
   })
-  .onStepExit((response)=>console.log('exiting'))
-  // .onStepProgress((response) => console.log('progress'))
+  .onStepExit((response)=>{
+    MapTool.removeMapPoints()
+  })
 
 console.log(map)
 
