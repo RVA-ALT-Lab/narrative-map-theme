@@ -9,7 +9,7 @@ var MapUtilityClass = function ($) {
   }
 
   this.fetchGeoJson = function () {
-      fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
+      fetch('/wp-content/themes/narrative-map-theme/Virginia_City_County_Town_Merge.json')
         .then(data => data.json())
         .then(json => resolve(json))
   }
@@ -28,7 +28,7 @@ var MapUtilityClass = function ($) {
 
   this.createCountyBoundries = function (map) {
     return new Promise((resolve, reject) => {
-      fetch('/wp-content/themes/narrative-map-theme/va_counties_1870_lat_lng.json')
+      fetch('/wp-content/themes/narrative-map-theme/Virginia_City_County_Town_Merge.json')
         .then(data => data.json())
         .then(json => {
 
