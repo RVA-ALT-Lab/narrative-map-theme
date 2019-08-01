@@ -10,7 +10,7 @@ var MapUtilityClass = function ($) {
 
   this.initMap = function ( ) {
 
-      var mymap = L.map('map').setView([37.5536111, -77.4605556], 7);
+      var mymap = L.map('map').setView([37.5215, -78.8537], 7);
       L.tileLayer('https://api.mapbox.com/styles/v1/jeffeverhart383/cj9sxi40c2g3s2skby2y6h8jh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamVmZmV2ZXJoYXJ0MzgzIiwiYSI6IjIwNzVlOTA3ODI2MTY0MjM3OTgxMTJlODgzNjg5MzM4In0.QA1GsfWZccIB8u0FbhJmRg', {
           attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
           maxZoom: 18,
@@ -104,11 +104,10 @@ var MapUtilityClass = function ($) {
   }
 
   this.performFocusTransitions = function (map, instructions) {
-
-    const newFocus = [
-      [37.5536111, -77.4605556],
-      instructions.focus.zoom || 8
-    ]
+    const lat = instructions.focus.latitude || 37.5215
+    const lng = instructions.focus.longitude || -78.8537
+    const zoom = instructions.focus.zoom || 7
+    const newFocus = [ [lat, lng], zoom ]
     if (!instructions.focus.transition || instructions.focus.transition === 'zoomTo') {
       map.setView(...newFocus)
     } else if (instructions.focus.transition === 'panTo') {
