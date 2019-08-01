@@ -37,6 +37,7 @@
 
           data-map-points='<?php echo acf_fetch_map_points(); ?>'
           data-highlighted-counties='<?php echo acf_fetch_map_highlighted_counties(); ?>'
+          data-map-binding='<?php echo acf_fetch_data_binding(); ?>'
           >
             <h2><?php the_title(); ?></h2>
             <?php the_content(); ?>
@@ -77,11 +78,12 @@ scroller
     const instructions = MapTool.processNarrativeStepIntoInstructions(response.element)
     MapTool.performFocusTransitions(map, instructions)
     MapTool.addMapPoints(map, instructions.map.points)
-
-    console.log(map)
+    MapTool.styleBasedOnBoundProperties(instructions)
   })
   .onStepExit((response)=>{
+    console.log('exiting')
     MapTool.removeMapPoints()
+    MapTool.resetBaseMapProperties()
   })
 
 console.log(map)

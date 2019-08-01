@@ -1,15 +1,9 @@
 var MapUtilityClass = function ($) {
-  var self = this;
 
-  this.vaCounties = function () {
-    this.fetchGeoJson()
-    .then(geojson => {
-      return geojson
-    })
-  }
+  this.geoJsonLayer = null;
 
   this.fetchGeoJson = function () {
-      fetch('/wp-content/themes/narrative-map-theme/Virginia_City_County_Town_Merge.json')
+      fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
         .then(data => data.json())
         .then(json => resolve(json))
   }
@@ -26,37 +20,56 @@ var MapUtilityClass = function ($) {
       return mymap;
   }
 
-  this.createCountyBoundries = function (map) {
+  this.createCountyBoundries =  (map) => {
     return new Promise((resolve, reject) => {
-      fetch('/wp-content/themes/narrative-map-theme/Virginia_City_County_Town_Merge.json')
+      fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
         .then(data => data.json())
         .then(json => {
 
-          // function styleCounties(feature) {
-          //   return {
-          //     fillColor: feature.properties.description.countyConvention ? 'green' : null
-          //   }
-          // }
+          const countyLayer = L.geoJSON(json,{
+            onEachFeature: (feature, layer) => {
+              if(feature.properties) {
+                const popupContent = this.returnFeaturePopupContent(feature)
+                const popup = layer.bindPopup(popupContent)
+                console.log(popup)
 
-          // const mappedCounties = json.features.map(feature => {
-          //   feature.properties.description.countyConvention = self.countyConventions.includes(feature.properties.description.name) ? true : false
-          //   return feature
-          // })
-          // json.features = mappedCounties
-
-          const countyLayer = L.geoJSON(json)
-          .addTo(map)
-          function defineBaseStyle (feature) {
-            return {
-              "fillColor": '#FFFFFF',
-              "fillOpacity": 0,
-              "color": '#FFFFFF'
+              }
             }
-          }
-          countyLayer.setStyle(defineBaseStyle)
+          })
+          .addTo(map)
+          this.geoJsonLayer = countyLayer
+          countyLayer.setStyle(this.returnBaseMapStyles)
           resolve(countyLayer)
         })
     })
+  }
+
+  this.returnFeaturePopupContent = (feature) => {
+
+    const tableRows = []
+    for (let prop in feature.properties.data) {
+      if (feature.properties.data[prop]) {
+        const row = `<tr><td>${prop}</td><td>${feature.properties.data[prop]}</td></tr>`
+        tableRows.push(row)
+      }
+    }
+    const popupContent = `
+      <h2>${feature.properties.Name}</h2>
+      <table>
+        <tbody>
+
+        </tbody>
+      </table>
+    `
+    return popupContent
+  }
+
+  this.returnBaseMapStyles = () => {
+    return {
+      "fillColor": '#FFFFFF',
+      "fillOpacity": 0,
+      "color": '#FFFFFF'
+    }
   }
 
   this.processNarrativeStepIntoInstructions = function (element) {
@@ -72,7 +85,8 @@ var MapUtilityClass = function ($) {
         legend: null,
         points: [],
         highlightedCounties: []
-      }
+      },
+      binding: null
     }
     mapInstructions.focus.latitude = parseFloat(element.dataset.focusLatitude)
     mapInstructions.focus.longitude = parseFloat(element.dataset.focusLongitude)
@@ -85,12 +99,14 @@ var MapUtilityClass = function ($) {
     mapInstructions.map.points = element.dataset.mapPoints ? JSON.parse(element.dataset.mapPoints) : []
     mapInstructions.map.highlightedCounties = element.dataset.highlightedCounties
 
+    mapInstructions.binding = element.dataset.mapBinding
     return mapInstructions
   }
 
   this.performFocusTransitions = function (map, instructions) {
+
     const newFocus = [
-      [instructions.focus.latitude, instructions.focus.longitude],
+      [37.5536111, -77.4605556],
       instructions.focus.zoom || 8
     ]
     if (!instructions.focus.transition || instructions.focus.transition === 'zoomTo') {
@@ -118,11 +134,22 @@ var MapUtilityClass = function ($) {
     this.activeMarkers.forEach(marker => {
       marker.remove()
     })
-    this.activeMarkers = []
   }
 
-  this.stylePolygonBoundaries = () => {
+  this.styleBasedOnBoundProperties = (instructions) => {
+    this.geoJsonLayer.setStyle((feature) => {
+      if (feature.properties.data[instructions.binding]) {
+        return {
+          "fillColor": '#87cefa',
+          "fillOpacity": .5,
+          "color": '#87cefa'
+        }
+      }
+    })
+  }
 
+  this.resetBaseMapProperties = () => {
+    this.geoJsonLayer.setStyle(this.returnBaseMapStyles)
   }
 
 }
@@ -133,4 +160,5 @@ const map = MapTool.initMap();
 var countyLayer
 MapTool.createCountyBoundries(map).then(counties => {
   countyLayer = counties
+  this.geoJsonLayer = countyLayer
 });

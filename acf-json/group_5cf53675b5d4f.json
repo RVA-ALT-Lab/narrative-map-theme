@@ -3,6 +3,25 @@
     "title": "Narrative",
     "fields": [
         {
+            "key": "field_5d41ed9909580",
+            "label": "Data Binding",
+            "name": "data_binding",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5cfa64e319b55",
             "label": "Focus Latitude",
             "name": "focus_latitude",
@@ -286,5 +305,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1559924859
+    "modified": 1564601789
 }

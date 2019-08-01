@@ -334,6 +334,16 @@ function acf_generic_field($field, $label){
     }
 }
 
+function acf_fetch_data_binding(){
+  global $post;
+  $json = get_field('data_binding');
+  if( $json) {
+    return $json;
+  } else {
+    return '';
+  }
+}
+
 function acf_fetch_map_json(){
   global $post;
   $json = get_field('map_json');
