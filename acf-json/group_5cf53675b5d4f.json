@@ -68,7 +68,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
+                    "default_value": ".5",
                     "min": "",
                     "max": 1,
                     "step": ".1",
@@ -338,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1565109714
+    "modified": 1565113935
 }
