@@ -6,7 +6,7 @@
             "key": "field_5d41ed9909580",
             "label": "Data Binding",
             "name": "data_binding",
-            "type": "text",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -15,11 +15,82 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5d4998b99d5d9",
+                    "label": "field",
+                    "name": "field",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5d4998c99d5da",
+                    "label": "fill color",
+                    "name": "fill_color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#87cefa"
+                },
+                {
+                    "key": "field_5d49992b9d5db",
+                    "label": "fill opacity",
+                    "name": "fill_opacity",
+                    "type": "range",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": 1,
+                    "step": ".1",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_5d49994c9d5dc",
+                    "label": "border color",
+                    "name": "border_color",
+                    "type": "color_picker",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "#87cefa"
+                }
+            ]
         },
         {
             "key": "field_5cfa64e319b55",
@@ -248,44 +319,6 @@
                     "delay": 0
                 }
             ]
-        },
-        {
-            "key": "field_5cf5367fafcae",
-            "label": "Map JSON",
-            "name": "map_json",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "Valid JSON string for map directions",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
-        },
-        {
-            "key": "field_5cfa66261640b",
-            "label": "Highlighted Counties",
-            "name": "highlighted_counties",
-            "type": "textarea",
-            "instructions": "This should be a comma separated list of county names preferably in lower case: i.e. augusta,chesterfield, etc",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "maxlength": "",
-            "rows": "",
-            "new_lines": ""
         }
     ],
     "location": [
@@ -305,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1564601789
+    "modified": 1565109714
 }

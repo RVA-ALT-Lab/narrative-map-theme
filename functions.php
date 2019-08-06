@@ -338,7 +338,7 @@ function acf_fetch_data_binding(){
   global $post;
   $json = get_field('data_binding');
   if( $json) {
-    return $json;
+    return json_encode($json);
   } else {
     return '';
   }

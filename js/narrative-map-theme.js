@@ -1,5 +1,4 @@
 var MapUtilityClass = function ($) {
-
   this.geoJsonLayer = null;
 
   this.fetchGeoJson = function () {
@@ -31,7 +30,6 @@ var MapUtilityClass = function ($) {
               if(feature.properties) {
                 const popupContent = this.returnFeaturePopupContent(feature)
                 const popup = layer.bindPopup(popupContent)
-                console.log(popup)
 
               }
             }
@@ -57,7 +55,7 @@ var MapUtilityClass = function ($) {
       <h2>${feature.properties.Name}</h2>
       <table>
         <tbody>
-
+          ${tableRows.join()}
         </tbody>
       </table>
     `
@@ -136,15 +134,22 @@ var MapUtilityClass = function ($) {
   }
 
   this.styleBasedOnBoundProperties = (instructions) => {
-    this.geoJsonLayer.setStyle((feature) => {
-      if (feature.properties.data[instructions.binding]) {
-        return {
-          "fillColor": '#87cefa',
-          "fillOpacity": .5,
-          "color": '#87cefa'
+    if (instructions.binding) {
+      const convertedInstructions = JSON.parse(instructions.binding)
+      this.geoJsonLayer.setStyle((feature) => {
+        for (let instructionSet of convertedInstructions) {
+          if (feature.properties.data[instructionSet.field]) {
+            return {
+              "fillColor": instructionSet.fill_color,
+              "fillOpacity": parseFloat(instructionSet.fill_opacity),
+              "color": instructionSet.border_color
+            }
+          }
         }
-      }
-    })
+      })
+    } else {
+      return
+    }
   }
 
   this.resetBaseMapProperties = () => {
