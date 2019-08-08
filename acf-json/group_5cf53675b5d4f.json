@@ -41,6 +41,25 @@
                     "maxlength": ""
                 },
                 {
+                    "key": "field_5d4c37879a32d",
+                    "label": "legend alias",
+                    "name": "legend_alias",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
                     "key": "field_5d4998c99d5da",
                     "label": "fill color",
                     "name": "fill_color",
@@ -89,6 +108,31 @@
                         "id": ""
                     },
                     "default_value": "#87cefa"
+                },
+                {
+                    "key": "field_5d4c31743f829",
+                    "label": "pattern",
+                    "name": "pattern",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "none": "none",
+                        "striped": "striped"
+                    },
+                    "default_value": [],
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 }
             ]
         },
@@ -338,5 +382,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1565113935
+    "modified": 1565276094
 }

@@ -62,7 +62,13 @@
 
   </div>
   <!-- End Content Container -->
-
+<style>
+  .legend.info {
+    background-color: #fff;
+    min-width: 80px;
+    min-height: 100px;
+  }
+</style>
 <script src="https://unpkg.com/intersection-observer"></script>
 <script src="https://unpkg.com/scrollama"></script>
 <script>
@@ -78,12 +84,14 @@ scroller
     const instructions = MapTool.processNarrativeStepIntoInstructions(response.element)
     MapTool.performFocusTransitions(map, instructions)
     MapTool.addMapPoints(map, instructions.map.points)
-    MapTool.styleBasedOnBoundProperties(instructions)
+    MapTool.styleBasedOnBoundProperties(map, instructions)
+    MapTool.createNewLegend(map, instructions)
   })
   .onStepExit((response)=>{
     console.log('exiting')
     MapTool.removeMapPoints()
     MapTool.resetBaseMapProperties()
+    MapTool.removeLegend()
   })
 
 console.log(map)

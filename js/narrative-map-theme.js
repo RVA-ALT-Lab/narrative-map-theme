@@ -1,5 +1,6 @@
 var MapUtilityClass = function ($) {
   this.geoJsonLayer = null;
+  this.legendControl = null;
 
   this.fetchGeoJson = function () {
       fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
@@ -133,16 +134,26 @@ var MapUtilityClass = function ($) {
     })
   }
 
-  this.styleBasedOnBoundProperties = (instructions) => {
+  this.styleBasedOnBoundProperties = (map, instructions) => {
     if (instructions.binding) {
       const convertedInstructions = JSON.parse(instructions.binding)
       this.geoJsonLayer.setStyle((feature) => {
         for (let instructionSet of convertedInstructions) {
           if (feature.properties.data[instructionSet.field]) {
-            return {
-              "fillColor": instructionSet.fill_color,
-              "fillOpacity": parseFloat(instructionSet.fill_opacity),
-              "color": instructionSet.border_color
+            if (instructionSet.pattern === 'striped') {
+              let stripes = new L.StripePattern({color:instructionSet.fill_color, angle: -45})
+              stripes.addTo(map)
+              return {
+                "fillPattern": stripes,
+                "fillOpacity": instructionSet.fill_opacity,
+                "color": instructionSet.border_color
+              }
+            } else {
+              return {
+                "fillColor": instructionSet.fill_color,
+                "fillOpacity": parseFloat(instructionSet.fill_opacity),
+                "color": instructionSet.border_color
+              }
             }
           }
         }
@@ -150,6 +161,28 @@ var MapUtilityClass = function ($) {
     } else {
       return
     }
+  }
+
+
+  this.createNewLegend = (map, instructions) => {
+    console.log(instructions)
+    const legend = L.control({position: 'bottomleft'})
+    this.legendControl = legend
+    legend.onAdd = (map) => {
+      var div = L.DomUtil.create('div', 'info legend')
+      div.in = 'legend'
+      div.innerHTML = instructions.map.title || ""
+      return div
+    }
+    legend.addTo(map)
+  }
+
+  this.removeLegend = () => {
+    this.legendControl.remove()
+  }
+
+  this.modifyExistingLegend = (legend, map, instructions) => {
+
   }
 
   this.resetBaseMapProperties = () => {

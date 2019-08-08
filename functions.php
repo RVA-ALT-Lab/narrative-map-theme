@@ -142,6 +142,9 @@ function narrative_map_theme_scripts() {
   wp_register_script('leaflet_js', 'https://unpkg.com/leaflet@1.2.0/dist/leaflet.js', null, null, true);
   wp_enqueue_script('leaflet_js');
 
+  wp_register_script('leaflet_pattern_js', get_template_directory_uri() . '/js/leaflet-pattern.js', null, null, true);
+  wp_enqueue_script('leaflet_pattern_js');
+
   wp_enqueue_script( 'narrative-map-theme-custom-js', get_template_directory_uri() . '/js/narrative-map-theme.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
