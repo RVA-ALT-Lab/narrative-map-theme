@@ -18,9 +18,16 @@
 
         <?php
         $index = 1;
+        $args = array(
+          'numberposts' => -1,
+          'orderby' => 'menu_order',
+          'order' => 'ASC',
+          'post_type' => 'narrative'
+        );
+        $loop = new WP_Query($args);
         /* Start the Loop */
-        while ( have_posts() ) :
-          the_post();
+        while ( $loop->have_posts() ) :
+          $loop->the_post();
         ?>
           <div class="step"
           data-step="<?php echo $index; $index++ ?>"

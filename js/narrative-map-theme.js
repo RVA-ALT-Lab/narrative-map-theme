@@ -1,6 +1,7 @@
 var MapUtilityClass = function ($) {
-  this.geoJsonLayer = null;
-  this.legendControl = null;
+  this.geoJsonLayer = null
+  this.legendControl = null
+  this.activeMarkers = []
 
   this.fetchGeoJson = function () {
       fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
@@ -9,7 +10,6 @@ var MapUtilityClass = function ($) {
   }
 
   this.initMap = function ( ) {
-
       var mymap = L.map('map').setView([37.5215, -78.8537], 7);
       L.tileLayer('https://api.mapbox.com/styles/v1/jeffeverhart383/cj9sxi40c2g3s2skby2y6h8jh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamVmZmV2ZXJoYXJ0MzgzIiwiYSI6IjIwNzVlOTA3ODI2MTY0MjM3OTgxMTJlODgzNjg5MzM4In0.QA1GsfWZccIB8u0FbhJmRg', {
           attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -115,8 +115,6 @@ var MapUtilityClass = function ($) {
       map.flyTo(...newFocus)
     }
   }
-  this.activeMarkers = []
-
   this.addMapPoints = (map, points) => {
     points.forEach(point => {
       const marker = L.marker([point.latitude, point.longitude], {
@@ -165,7 +163,6 @@ var MapUtilityClass = function ($) {
 
 
   this.createNewLegend = (map, instructions) => {
-    console.log(instructions)
     const legend = L.control({position: 'bottomleft'})
     this.legendControl = legend
     legend.onAdd = (map) => {
@@ -179,10 +176,6 @@ var MapUtilityClass = function ($) {
 
   this.removeLegend = () => {
     this.legendControl.remove()
-  }
-
-  this.modifyExistingLegend = (legend, map, instructions) => {
-
   }
 
   this.resetBaseMapProperties = () => {
