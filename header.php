@@ -50,6 +50,12 @@
                                 <p>Events</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?php echo get_site_url(). '/about';?>">
+                            <i class="fa fa-2x fa-question"></i>
+                            <p>About</p>
+                            </a>
+                        </li>
                         <hr>
                     </ul>
                 </nav>

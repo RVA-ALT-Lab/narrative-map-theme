@@ -247,7 +247,7 @@ function make_member_csv($data){
 add_shortcode( 'get-churches', 'import_members_csv' );
 
 
-// if (function_exists('acf_add_options_page')) {
+if (function_exists('acf_add_options_page')) {
  function add_options_menu () {
     acf_add_options_page(
       array(
@@ -262,7 +262,7 @@ add_shortcode( 'get-churches', 'import_members_csv' );
   }
 
   add_action('admin_menu', 'add_options_menu');
-// }
+}
 
 
 //ACF DISPLAY
