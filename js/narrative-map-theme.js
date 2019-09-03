@@ -67,6 +67,7 @@ var MapUtilityClass = function ($) {
     return {
       "fillColor": '#FFFFFF',
       "fillOpacity": 0,
+      "weight": 2,
       "color": '#FFFFFF'
     }
   }
@@ -144,12 +145,14 @@ var MapUtilityClass = function ($) {
               return {
                 "fillPattern": stripes,
                 "fillOpacity": instructionSet.fill_opacity,
+                "weight": 2,
                 "color": instructionSet.border_color
               }
             } else {
               return {
                 "fillColor": instructionSet.fill_color,
                 "fillOpacity": parseFloat(instructionSet.fill_opacity),
+                "weight": 2,
                 "color": instructionSet.border_color
               }
             }
