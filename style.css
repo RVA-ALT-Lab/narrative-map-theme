@@ -124,7 +124,8 @@ body, html {
 }
 
 .map,
-.front-page {
+.front-page
+{
   height: 100%;
   position: absolute;
   top: 0;
@@ -302,6 +303,14 @@ li a .fa-map-marker {
 
 
 /* Non-map content */
+
+div#primary {
+  margin-left: 85px;
+}
+
+#main {
+  padding: 1.5em;
+}
 
 .content-container {
   margin-left: 85px;
