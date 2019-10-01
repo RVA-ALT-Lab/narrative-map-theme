@@ -19,7 +19,7 @@
         <?php
         $index = 1;
         $args = array(
-          'numberposts' => -1,
+          'posts_per_page' => -1,
           'orderby' => 'menu_order',
           'order' => 'ASC',
           'post_type' => 'narrative'
