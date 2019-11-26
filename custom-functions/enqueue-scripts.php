@@ -29,9 +29,20 @@ function narrative_map_theme_scripts() {
   wp_enqueue_script('leaflet_pattern_js');
 
   wp_enqueue_script( 'narrative-map-theme-custom-js', get_template_directory_uri() . '/js/narrative-map-theme.js', array(), '20151215', true );
+  wp_localize_script('narrative-map-theme-custom-js', 'NARRATIVE_MAP_OPTIONS', get_narrative_map_theme_options());
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'narrative_map_theme_scripts' );
+
+function get_mapbox_access_key () {
+  return get_field('mapbox_access_key', 'option');
+}
+
+function get_narrative_map_theme_options() {
+  $mapbox_access_key = get_mapbox_access_key();
+  $data = ['mapboxAccessKey' => $mapbox_access_key];
+  return $data;
+}
