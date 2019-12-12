@@ -70,11 +70,11 @@
   </div>
   <!-- End Content Container -->
 <style>
-  .legend.info {
+  /* .legend.info {
     background-color: #fff;
     min-width: 80px;
     min-height: 100px;
-  }
+  } */
 </style>
 <script src="https://unpkg.com/intersection-observer"></script>
 <script src="https://unpkg.com/scrollama"></script>

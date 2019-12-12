@@ -366,4 +366,12 @@ div#primary {
   margin-left: 0;
 }
 
-/* Another Comment */
+/* Legends */
+
+.legend.info {
+  background-color: #fff;
+  min-width: 80px;
+  min-height: 100px;
+  border: 1px solid grey;
+  padding: 1em;
+}
