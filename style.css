@@ -136,6 +136,7 @@ body, html {
 #front-page {
   height: 100vh;
   width: calc(100vw - 85px);
+  background-color: #fff;
 }
 .map .full-page {
   background-color: #fff;

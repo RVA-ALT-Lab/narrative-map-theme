@@ -13,17 +13,20 @@ var MapUtilityClass = function ($) {
       var mymap = L.map('map').setView([37.5215, -78.8537], 7);
 
 
-      L.tileLayer('https://api.mapbox.com/styles/v1/jeffeverhart383/cj9sxi40c2g3s2skby2y6h8jh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamVmZmV2ZXJoYXJ0MzgzIiwiYSI6IjIwNzVlOTA3ODI2MTY0MjM3OTgxMTJlODgzNjg5MzM4In0.QA1GsfWZccIB8u0FbhJmRg', {
-          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox.streets',
-          accessToken: window.NARRATIVE_MAP_OPTIONS.mapboxAccessKey
-      }).addTo(mymap);
+      // L.tileLayer('https://api.mapbox.com/styles/v1/jeffeverhart383/cj9sxi40c2g3s2skby2y6h8jh/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamVmZmV2ZXJoYXJ0MzgzIiwiYSI6IjIwNzVlOTA3ODI2MTY0MjM3OTgxMTJlODgzNjg5MzM4In0.QA1GsfWZccIB8u0FbhJmRg', {
+      //     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      //     maxZoom: 18,
+      //     id: 'mapbox.streets',
+      //     accessToken: window.NARRATIVE_MAP_OPTIONS.mapboxAccessKey
+      // }).addTo(mymap);
 
-      mymap.setMaxBounds([
-        [36.560670, -74.989798],
-        [39.483375, -83.441628]
-      ])
+      //TODO: Add check here for localized WP scripts, and setMaxBounds if set
+      if (true){
+        mymap.setMaxBounds([
+          [36.560670, -74.989798],
+          [39.483375, -83.441628]
+        ])
+      }
       return mymap;
   }
 
@@ -72,10 +75,10 @@ var MapUtilityClass = function ($) {
 
   this.returnBaseMapStyles = () => {
     return {
-      "fillColor": '#FFFFFF',
-      "fillOpacity": 0,
-      "weight": 2,
-      "color": '#FFFFFF'
+      "fillColor": '#F6F6F6',
+      "fillOpacity": .9,
+      "weight": 1,
+      "color": '#6A6A6A'
     }
   }
 
