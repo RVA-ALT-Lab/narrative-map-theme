@@ -317,7 +317,7 @@ div#primary {
   margin-left: 85px;
   background: #fff;
   height: 100vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 /*single location*/

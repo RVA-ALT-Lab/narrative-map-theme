@@ -85,9 +85,10 @@ const scroller = scrollama()
 scroller
   .setup({
     step: '.step',
-    // progress: true
+    progress: true
   })
   .onStepEnter((response)=>{
+    console.log(response)
     const instructions = MapTool.processNarrativeStepIntoInstructions(response.element)
     MapTool.performFocusTransitions(map, instructions)
     MapTool.addMapPoints(map, instructions.map.points)
@@ -95,6 +96,7 @@ scroller
     MapTool.createNewLegend(map, instructions)
   })
   .onStepExit((response)=>{
+    console.log(response)
     console.log('exiting')
     MapTool.removeMapPoints()
     MapTool.resetBaseMapProperties()
