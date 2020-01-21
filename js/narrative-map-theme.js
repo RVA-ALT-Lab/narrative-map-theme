@@ -2,6 +2,7 @@ var MapUtilityClass = function ($) {
   this.geoJsonLayer = null
   this.legendControl = null
   this.activeMarkers = []
+  this.activeStripes = null
 
   this.fetchGeoJson = function () {
       fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
@@ -145,29 +146,33 @@ var MapUtilityClass = function ($) {
 
   this.styleBasedOnBoundProperties = (map, instructions) => {
     if (instructions.binding) {
-      const convertedInstructions = JSON.parse(instructions.binding)
-      this.geoJsonLayer.setStyle((feature) => {
-        for (let instructionSet of convertedInstructions) {
-          if (feature.properties.data[instructionSet.field]) {
-            if (instructionSet.pattern === 'striped') {
-              let stripes = new L.StripePattern({color:instructionSet.fill_color, angle: -45})
-              stripes.addTo(map)
-              return {
-                "fillPattern": stripes,
-                "fillOpacity": instructionSet.fill_opacity,
-                "weight": 2,
-                "color": instructionSet.border_color
-              }
-            } else {
-              return {
-                "fillColor": instructionSet.fill_color,
-                "fillOpacity": parseFloat(instructionSet.fill_opacity),
-                "weight": 2,
-                "color": instructionSet.border_color
+      this.resetBaseMapProperties().then( () => {
+        const convertedInstructions = JSON.parse(instructions.binding)
+        this.geoJsonLayer.setStyle((feature) => {
+          for (let instructionSet of convertedInstructions) {
+            if (feature.properties.data[instructionSet.field]) {
+              if (instructionSet.pattern === 'striped') {
+                this.activeStripes = new L.StripePattern({color:instructionSet.fill_color, angle: -45})
+                console.log(this.activeStripes)
+                this.activeStripes.addTo(map)
+                return {
+                  "fillPattern": this.activeStripes,
+                  "fillOpacity": instructionSet.fill_opacity,
+                  "weight": 2,
+                  "color": instructionSet.border_color
+                }
+              } else {
+                return {
+                  "fillColor": instructionSet.fill_color,
+                  "fillPattern": null,
+                  "fillOpacity": parseFloat(instructionSet.fill_opacity),
+                  "weight": 2,
+                  "color": instructionSet.border_color
+                }
               }
             }
           }
-        }
+        })
       })
     } else {
       return
@@ -191,8 +196,16 @@ var MapUtilityClass = function ($) {
     this.legendControl.remove()
   }
 
+
   this.resetBaseMapProperties = () => {
-    this.geoJsonLayer.setStyle(this.returnBaseMapStyles)
+    return new Promise((resolve, reject) => {
+      this.geoJsonLayer.setStyle(this.returnBaseMapStyles)
+      if (this.activeStripes) {
+        console.log(this.activeStripes)
+        this.activeStripes.remove()
+      }
+      resolve()
+    })
   }
 
 }

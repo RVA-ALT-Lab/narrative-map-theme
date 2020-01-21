@@ -99,7 +99,6 @@ scroller
     console.log(response)
     console.log('exiting')
     MapTool.removeMapPoints()
-    MapTool.resetBaseMapProperties()
     MapTool.removeLegend()
   })
 
