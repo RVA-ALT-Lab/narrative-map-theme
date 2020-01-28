@@ -181,12 +181,21 @@ var MapUtilityClass = function ($) {
 
 
   this.createNewLegend = (map, instructions) => {
+    console.log(instructions)
     const legend = L.control({position: 'bottomleft'})
     this.legendControl = legend
     legend.onAdd = (map) => {
       var div = L.DomUtil.create('div', 'info legend')
+      const bindings = JSON.parse(instructions.binding)
+      console.log(bindings)
+      const bindingsHTML = bindings.map(binding => {
+        return `<i style="box-sizing: border-box;border: 3px solid ${binding.border_color}; background-color: ${binding.fill_color};"></i>${binding.legendAlias || binding.field}</br></br>`
+      })
       div.in = 'legend'
-      div.innerHTML = instructions.map.title || ""
+      div.innerHTML =
+      `<h5>${instructions.map.title || ""}</h5>
+       ${bindingsHTML.join('')}
+      `
       return div
     }
     legend.addTo(map)

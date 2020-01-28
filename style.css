@@ -375,3 +375,11 @@ div#primary {
   border: 1px solid grey;
   padding: 1em;
 }
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.8;
+}
