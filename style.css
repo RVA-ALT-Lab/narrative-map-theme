@@ -347,7 +347,8 @@ div#primary {
 }
 
 #narrative-section .map {
-  height: 100vh;
+  height: 95vh;
+  max-height: 850px;
   width: 100%;
   position: sticky;
 
@@ -364,6 +365,7 @@ div#primary {
 
 #narrative-section .row {
   margin-left: 0;
+  margin-right: 0;
 }
 
 /* Legends */
