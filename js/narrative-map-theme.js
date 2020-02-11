@@ -185,7 +185,7 @@ var MapUtilityClass = function ($) {
       const bindings = JSON.parse(instructions.binding)
       console.log(bindings)
       const bindingsHTML = bindings.map(binding => {
-        return `<i style="box-sizing: border-box;border: 3px solid ${binding.border_color}; background-color: ${binding.fill_color};"></i>${binding.legendAlias || binding.field}</br></br>`
+        return `<i style="box-sizing: border-box;border: 3px solid ${binding.border_color}; background-color: ${binding.fill_color};"></i>${binding.legend_alias || binding.field}</br></br>`
       })
       div.in = 'legend'
       div.innerHTML =
