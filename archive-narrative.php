@@ -1,4 +1,9 @@
 <?php get_header(); ?>
+  <div id="overlay" style="display:none;">
+      <div class="spinner"></div>
+      <br/>
+      Loading...
+  </div>
   <div class="content-container container-fluid" id="narrative-section">
     <div class="row">
       <div class="narrative-title-section" style="background: url(<?php echo get_stylesheet_directory_uri().'/images/virginia-map-1883.jpg'; ?>)">

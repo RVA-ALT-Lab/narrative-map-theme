@@ -4,12 +4,13 @@ var MapUtilityClass = function ($) {
   this.activeMarkers = []
   this.activeStripes = null
 
-  this.fetchGeoJson = function () {
-      fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
-        .then(data => data.json())
-        .then(json => resolve(json))
+  this.activateLoadingSpinner = () => {
+    $('#overlay').fadeIn()
   }
 
+  this.deactivateLoadingSpinner = () => {
+    $('#overlay').fadeOut()
+  }
   this.initMap = function ( ) {
       var mymap = L.map('map', {
         minZoom: 7,
@@ -27,7 +28,8 @@ var MapUtilityClass = function ($) {
       return mymap;
   }
 
-  this.createCountyBoundries =  (map) => {
+  this.createCountyBoundries = (map) => {
+    this.activateLoadingSpinner();
     return new Promise((resolve, reject) => {
       fetch('/wp-content/themes/narrative-map-theme/va-counties-town-cities-extended.json')
         .then(data => data.json())
@@ -45,6 +47,7 @@ var MapUtilityClass = function ($) {
           .addTo(map)
           this.geoJsonLayer = countyLayer
           countyLayer.setStyle(this.returnBaseMapStyles)
+          this.deactivateLoadingSpinner()
           resolve(countyLayer)
         })
     })
