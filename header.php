@@ -26,19 +26,19 @@
                                 <p>Narrative</p>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?php echo get_site_url(). '/map';?>">
                             <i class="fa fa-2x fa-map"></i>
                             <p>Map</p>
                             </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href="<?php echo get_site_url(). '/location';?>" id="openPoints">
                                 <i class="fa fa-2x fa-map-pin"></i>
                                 <p>Locations</p>
                             </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href="<?php echo get_site_url(). '/person';?>">
                                 <i class="fa fa-2x fa-user"></i>
                                 <p>People</p>
@@ -49,7 +49,7 @@
                                 <i class="fa fa-2x fa-calendar"></i>
                                 <p>Events</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?php echo get_site_url(). '/about';?>">
                             <i class="fa fa-2x fa-question"></i>

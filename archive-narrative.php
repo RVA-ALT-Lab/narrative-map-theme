@@ -11,8 +11,7 @@
           <h1>Mapping Black Religion and Politics in Post-Emancipation Virginia</h1>
           <hr>
           <h2>
-          A Digital History Project by <br>
-          Nicole Myers Turner, PhD
+          A Digital History Project
           </h2>
         </div>
       </div>
