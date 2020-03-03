@@ -14,7 +14,8 @@ var MapUtilityClass = function ($) {
   this.initMap = function ( ) {
       var mymap = L.map('map', {
         minZoom: 7,
-        maxZoom: 10
+        maxZoom: 7,
+        zoomControl: false
       })
       .setView([37.5215, -78.8537])
 
@@ -38,8 +39,9 @@ var MapUtilityClass = function ($) {
           const countyLayer = L.geoJSON(json,{
             onEachFeature: (feature, layer) => {
               if(feature.properties) {
-                const popupContent = this.returnFeaturePopupContent(feature)
-                const popup = layer.bindPopup(popupContent)
+                // TODO: add this back in once you change returnFeaturePopupContent
+                // const popupContent = this.returnFeaturePopupContent(feature)
+                // const popup = layer.bindPopup(popupContent)
 
               }
             }
@@ -52,7 +54,7 @@ var MapUtilityClass = function ($) {
         })
     })
   }
-
+  // TODO: Modify this function to accept databinding info
   this.returnFeaturePopupContent = (feature) => {
 
     const tableRows = []
@@ -181,7 +183,7 @@ var MapUtilityClass = function ($) {
 
   this.createNewLegend = (map, instructions) => {
     console.log(instructions)
-    const legend = L.control({position: 'bottomleft'})
+    const legend = L.control({position: 'topleft'})
     this.legendControl = legend
     legend.onAdd = (map) => {
       var div = L.DomUtil.create('div', 'info legend')
