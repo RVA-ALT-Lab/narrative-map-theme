@@ -19,7 +19,7 @@ Template Name: Front Page
                         <div class="col-lg-12">
                             <h1><?php bloginfo('name'); ?></h1>
                             <p><?php  bloginfo('description');?></p>
-                            <a class="btn btn-primary btn-lg" href="<?php echo get_site_url(). '/map'; ?>">Explore the Map</a>
+                            <a class="btn btn-primary btn-lg" href="<?php echo get_site_url(). '/narrative'; ?>">Explore the Map</a>
                             <p class="small"><?php echo $caption; ?></p>
                         </div>
                     </div>
