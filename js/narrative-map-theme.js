@@ -55,12 +55,13 @@ var MapUtilityClass = function ($) {
     })
   }
   // TODO: Modify this function to accept databinding info
-  this.returnFeaturePopupContent = (feature) => {
+  this.returnFeaturePopupContent = (feature, databinding) => {
 
     const tableRows = []
-    for (let prop in feature.properties.data) {
-      if (feature.properties.data[prop]) {
-        const row = `<tr><td>${prop}</td><td>${feature.properties.data[prop]}</td></tr>`
+    const fields = databinding.split(',')
+    for (let field in fields) {
+      if (feature.properties.data[field]) {
+        const row = `<tr><td>${field}</td><td>${feature.properties.data[field]}</td></tr>`
         tableRows.push(row)
       }
     }
@@ -149,26 +150,30 @@ var MapUtilityClass = function ($) {
     if (instructions.binding) {
       this.resetBaseMapProperties().then( () => {
         const convertedInstructions = JSON.parse(instructions.binding)
+        console.log(convertedInstructions)
         this.geoJsonLayer.setStyle((feature) => {
           for (let instructionSet of convertedInstructions) {
-            if (feature.properties.data[instructionSet.field]) {
-              if (instructionSet.pattern === 'striped') {
-                this.activeStripes = new L.StripePattern({color:instructionSet.fill_color, angle: -45})
-                console.log(this.activeStripes)
-                this.activeStripes.addTo(map)
-                return {
-                  "fillPattern": this.activeStripes,
-                  "fillOpacity": instructionSet.fill_opacity,
-                  "weight": 2,
-                  "color": instructionSet.border_color
-                }
-              } else {
-                return {
-                  "fillColor": instructionSet.fill_color,
-                  "fillPattern": null,
-                  "fillOpacity": parseFloat(instructionSet.fill_opacity),
-                  "weight": 2,
-                  "color": instructionSet.border_color
+            const fields = instructionSet.field.split(',')
+            for (let field of fields) {
+              if (feature.properties.data[field]) {
+                if (instructionSet.pattern === 'striped') {
+                  this.activeStripes = new L.StripePattern({color:instructionSet.fill_color, angle: -45})
+                  console.log(this.activeStripes)
+                  this.activeStripes.addTo(map)
+                  return {
+                    "fillPattern": this.activeStripes,
+                    "fillOpacity": instructionSet.fill_opacity,
+                    "weight": 2,
+                    "color": instructionSet.border_color
+                  }
+                } else {
+                  return {
+                    "fillColor": instructionSet.fill_color,
+                    "fillPattern": null,
+                    "fillOpacity": parseFloat(instructionSet.fill_opacity),
+                    "weight": 2,
+                    "color": instructionSet.border_color
+                  }
                 }
               }
             }

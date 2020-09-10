@@ -158,57 +158,6 @@ require get_template_directory() . '/custom-functions/init.php';
 
 
 
-
-//IMPORT CSV STUFF
-
-function import_members_csv(){
-         $file = plugin_dir_path(__FILE__) .'black_churches.csv';
-			$arrResult  = array();
-			$handle     = fopen($file, "r");
-			if(empty($handle) === false) {
-			    while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
-			        $arrResult[] = $data;
-			    }
-			    fclose($handle);
-			}
-			make_member_csv($arrResult);
-	}
-
-function make_member_csv($data){
-			foreach ($data as $key => $church) {
-				$new_church = array(
-				  'post_title'    => $church[0],
-				  'post_status'   => 'publish',
-				  'post_type' => 'location',
-				);
-
-			// Insert the post into the database
-			$new_church = wp_insert_post( $new_church );
-			var_dump($new_church);
-			if ($new_church) {
-			   // insert post meta
-				$values = array(
-					'pastor' => $church[8],
-					'clerk' => $church[9],
-					'year' => $church[7],
-					'association' => $church[6],
-					'city' => $church[1],
-					'county' => $church[2],
-					'state' => $church[3],
-					'number_of_members' => $church[10],
-					'post_office' => $church[11],
-				);
-			   foreach ($values as $key => $value) {
-				   	update_post_meta( $new_church, $key, $value);
-				   }
-				}
-			}
-
-}
-
-add_shortcode( 'get-churches', 'import_members_csv' );
-
-
 if (function_exists('acf_add_options_page')) {
  function add_options_menu () {
     acf_add_options_page(
